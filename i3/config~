@@ -1,0 +1,268 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+set_from_resource $darkred     color1  #000000
+set_from_resource $red         color9  #000000
+set_from_resource $darkgreen   color2  #000000
+set_from_resource $green       color10 #000000
+set_from_resource $darkyellow  color3  #000000
+set_from_resource $yellow      color11 #000000
+set_from_resource $darkblue    color4  #000000
+set_from_resource $blue        color12 #000000
+set_from_resource $darkmagenta color5  #000000
+set_from_resource $magenta     color13 #000000
+set_from_resource $darkcyan    color6  #000000
+set_from_resource $cyan        color14 #000000
+set_from_resource $darkwhite   color7  #000000
+# Use custom colors for black
+set $white       #ffffff
+set $black       #282828
+set $darkblack   #1d2021
+set $transparent #00000000
+
+set $height 25
+
+set $ws1 "1:  "
+set $ws2  "2:  "
+set $ws3  "3:  "
+set $ws4  "4:  "
+set $ws5  "5:  "
+set $ws6  "6:  "
+set $ws7  "7:  "
+set $ws8  "8:  "
+set $ws9  "9:  "
+set $ws10  "10:  "
+
+font pango:SourceCodePro+Powerline+Awesome Regular 8
+
+
+workspace_auto_back_and_forth yes
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindcode $mod+36 exec i3-sensible-terminal
+
+# kill focused window
+bindcode $mod+Shift+24 kill
+
+# start dmenu (a program launcher)
+bindcode $mod+40 exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindcode $mod+43 focus left
+bindcode $mod+44 focus down
+bindcode $mod+45 focus up
+bindcode $mod+46 focus right
+
+# alternatively, you can use the cursor keys:
+bindcode $mod+113 focus left
+bindcode $mod+116 focus down
+bindcode $mod+111 focus up
+bindcode $mod+114 focus right
+
+# move focused window
+bindcode $mod+Shift+43 move left
+bindcode $mod+Shift+44 move down
+bindcode $mod+Shift+45 move up
+bindcode $mod+Shift+46 move right
+
+# alternatively, you can use the cursor keys:
+bindcode $mod+Shift+113 move left
+bindcode $mod+Shift+116 move down
+bindcode $mod+Shift+111 move up
+bindcode $mod+Shift+114 move right
+
+# split in horizontal orientation
+bindcode $mod+60 split h
+
+# split in vertical orientation
+bindcode $mod+55 split v
+
+# enter fullscreen mode for the focused container
+bindcode $mod+41 fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindcode $mod+39 layout stacking
+bindcode $mod+25 layout tabbed
+bindcode $mod+26 layout toggle split
+
+bindcode $mod+Shift+65 floating toggle
+
+# change focus between tiling / floating windows
+bindcode $mod+65 focus mode_toggle
+
+# focus the parent container
+bindcode $mod+38 focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindcode $mod+10 workspace $ws1
+bindcode $mod+11 workspace $ws2
+bindcode $mod+12 workspace $ws3
+bindcode $mod+13 workspace $ws4
+bindcode $mod+14 workspace $ws5
+bindcode $mod+15 workspace $ws6
+bindcode $mod+16 workspace $ws7
+bindcode $mod+17 workspace $ws8
+bindcode $mod+18 workspace $ws9
+bindcode $mod+19 workspace $ws10
+
+bindcode $mod+67 workspace 11
+bindcode $mod+68 workspace 12
+bindcode $mod+69 workspace 13
+bindcode $mod+70 workspace 14
+bindcode $mod+71 workspace 15
+bindcode $mod+72 workspace 16
+bindcode $mod+73 workspace 17
+bindcode $mod+74 workspace 18
+bindcode $mod+75 workspace 19
+
+# move focused container to workspace
+bindcode $mod+Shift+10 move container to workspace $ws1
+bindcode $mod+Shift+11 move container to workspace $ws2
+bindcode $mod+Shift+12 move container to workspace $ws3
+bindcode $mod+Shift+13 move container to workspace $ws4
+bindcode $mod+Shift+14 move container to workspace $ws5
+bindcode $mod+Shift+15 move container to workspace $ws6
+bindcode $mod+Shift+16 move container to workspace $ws7
+bindcode $mod+Shift+17 move container to workspace $ws8
+bindcode $mod+Shift+18 move container to workspace $ws9
+bindcode $mod+Shift+19 move container to workspace $ws10
+
+bindcode $mod+Shift+67 move container to workspace 11
+bindcode $mod+Shift+68 move container to workspace 12
+bindcode $mod+Shift+69 move container to workspace 13
+bindcode $mod+Shift+70 move container to workspace 14
+bindcode $mod+Shift+71 move container to workspace 15
+bindcode $mod+Shift+72 move container to workspace 16
+bindcode $mod+Shift+73 move container to workspace 17
+bindcode $mod+Shift+74 move container to workspace 18
+bindcode $mod+Shift+75 move container to workspace 19
+
+# reload the configuration file
+bindcode $mod+Shift+54 reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindcode $mod+Shift+27 restart
+# exit i3 (logs you out of your X session)
+bindcode $mod+Shift+26 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindcode 44 resize shrink width 10 px or 10 ppt
+        bindcode 45 resize grow height 10 px or 10 ppt
+        bindcode 46 resize shrink height 10 px or 10 ppt
+        bindcode 47 resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindcode 113 resize shrink width 10 px or 10 ppt
+        bindcode 116 resize grow height 10 px or 10 ppt
+        bindcode 111 resize shrink height 10 px or 10 ppt
+        bindcode 114 resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindcode 36 mode "default"
+        bindcode 9 mode "default"
+}
+
+bindcode $mod+27 mode "resize"
+
+gaps inner 5
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        i3bar_command i3bar -t
+        status_command i3blocks
+        font pango:Ubuntu Mono 11
+        strip_workspace_numbers yes
+        #tray_output primary
+	position top
+        height $height
+        colors {
+            statusline         $white
+            background         #00000000
+            separator          $transparent
+
+    #                          BORDER       BACKGROUND   TEXT
+            focused_workspace  $transparent $darkblack   $darkyellow
+            inactive_workspace $transparent $transparent $white
+            active_workspace   $transparent $transparent $white
+            urgent_workspace   $darkred     $darkred     $transparent
+            binding_mode       $darkred     $darkred     $transparent
+        }
+}
+
+#Screenshot
+bindsym --release Print exec --no-startup-id scrot '%Y-%m-%d.png' -e 'mv $f ~/screenshot/'
+bindsym --release Shift+Print exec --no-startup-id scrot -u '%Y-%m-%d_.png' -e 'mv $f ~/screenshot/'
+
+#Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks 
+
+#Screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+#Suspend
+#bindsy XF86Sleep exec systemctl suspend
+
+#Music Control
+bindsym XF86AudioPlay exec playerctl --player vlc play-pause
+bindsym XF86AudioPrev exec playerctl --player vlc previous
+bindsym XF86AudioNext exec playerctl --player vlc next
+
+#Calculator
+bindsym XF86Calculator exec xcalc
+
+#ScreenLock
+bindsym $mod+Ctrl+l exec --no-startup-id i3lock -n -c 000000
+
+#ScratchPad
+bindcode $mod+48 move scratchpad
+bindcode $mod+Ctrl+44 scratchpad show
+
+bindsym $mod+Tab workspace back_and_forth
+
+#Disable focus on Dymola message
+#no-focus [class="Dymola"]
+
+#set rule for dual screen
+workspace $ws1 output primary
+workspace $ws2 output VGA1
+workspace $ws3 output VGA1
+workspace $ws4 output VGA1
+workspace $ws5 output VGA1
+workspace $ws6 output VGA1
+workspace $ws7 output VGA1
+workspace $ws8 output VGA1
+workspace $ws9 output VGA1
+
+
+workspace 11 output LVDS1
+workspace 12 output LVDS1
+workspace 13 output LVDS1
+workspace 14 output LVDS1
+workspace 15 output LVDS1
+workspace 16 output LVDS1
+workspace 17 output LVDS1
+workspace 18 output LVDS1
+workspace 19 output LVDS1
