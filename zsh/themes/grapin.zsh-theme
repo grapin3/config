@@ -28,12 +28,12 @@ function time_stamp() {
 
 PROMPT_CHAR="%(!.#.$)"
 
-TIME_STAMP="%{$fg[red]%}[%T]%{$reset_color%}"
+TIME_STAMP="%F{red}[%T]%f"
 
 JOBS="%1(j.%2(j.%j jobs.%j job).)"
-USER="%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%}"
+USER="%F{yellow}%n%f@%F{magenta}%m%f"
 
-PROMPT='$TIME_STAMP %~ $(vcs_status)
-$PROMPT_CHAR '
+PROMPT="$TIME_STAMP %~
+$PROMPT_CHAR "
 
-RPROMPT='$JOBS $USER'
+RPROMPT="$JOBS $USER"
