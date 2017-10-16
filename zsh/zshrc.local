@@ -1,0 +1,6 @@
+#Set vi shortcut
+setopt vi
+
+#Setup prompt
+zstyle ':prompt:grml:left:setup' items rc change-root time path vcs newline percent
+zstyle ':prompt:grml:right:setup' items user at host battery sad-smiley
