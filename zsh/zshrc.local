@@ -1,6 +1,25 @@
-#Set vi shortcut
+#SET VI SHORTCUT
 setopt vi
 
-#Setup prompt
+#SETUP PROMPT
+#Setup the element
 zstyle ':prompt:grml:left:setup' items rc change-root time path vcs newline percent
-zstyle ':prompt:grml:right:setup' items user at host battery sad-smiley
+zstyle ':prompt:grml:right:setup' items tiny_jobs user at host battery sad-smiley
+#Edit the different elements
+zstyle ':prompt:grml:*:items:user' pre '%F{magenta}'
+zstyle ':prompt:grml:*:items:host' pre '%F{blue}'
+zstyle ':prompt:grml:*:items:host' token '%m'
+zstyle ':prompt:grml:*:items:host' post '%f'
+zstyle ':prompt:grml:*:items:jobs' token '[%j job(s)] '
+
+function job_status () {
+    if [[ $(jobs | wc -l) -gt 1 ]]; then # has background job(s)
+        REPLY='%j jobs'
+    elif [[ $(jobs | wc -l) -gt 0 ]]; then
+        REPLY='%j job'
+    else 
+        REPLY=' '
+    fi
+}
+
+grml_theme_add_token tiny_jobs -f job_status '' ' '

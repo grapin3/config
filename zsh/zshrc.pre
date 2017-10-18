@@ -1,0 +1,2 @@
+#Active the battery display
+GRML_DISPLAY_BATTERY=1
