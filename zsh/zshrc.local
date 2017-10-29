@@ -4,7 +4,13 @@ setopt vi
 #SETUP PROMPT
 #Setup the element
 zstyle ':prompt:grml:left:setup' items rc change-root time path vcs newline percent
-zstyle ':prompt:grml:right:setup' items tiny_jobs user at host battery sad-smiley
+
+if [[ -o login ]] ; then
+    zstyle ':prompt:grml:right:setup' items sad-smiley tiny_jobs user at host battery 
+else
+    zstyle ':prompt:grml:right:setup' items sad-smiley tiny_jobs user at host;
+fi
+
 #Edit the different elements
 zstyle ':prompt:grml:*:items:user' pre '%F{magenta}'
 zstyle ':prompt:grml:*:items:host' pre '%F{blue}'
